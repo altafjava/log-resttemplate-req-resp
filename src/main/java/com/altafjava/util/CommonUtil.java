@@ -6,6 +6,9 @@ import java.io.IOException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.context.ApplicationContext;
+
+import com.altafjava.misc.ApplicationContextProvider;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
 
@@ -19,7 +22,8 @@ public class CommonUtil {
 	public static boolean writeStringDataToFile(String fileName, Object object) {
 		File file = new File(fileName);
 		try {
-			ObjectMapper objectMapper = new ObjectMapper();
+			ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();
+			ObjectMapper objectMapper = applicationContext.getBean(ObjectMapper.class);
 			objectMapper.writeValue(file, object);
 		} catch (IOException e) {
 			log.error("Error occurred while writing List<Users> into file" + e);
@@ -32,7 +36,9 @@ public class CommonUtil {
 		String post = null;
 		log.debug("Application trying to load post request data file from '{}' ", fileLocation);
 		try {
-			JSONParser jsonParser = new JSONParser();
+			ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();
+			JSONParser jsonParser = applicationContext.getBean(JSONParser.class);
+//			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(fileLocation));
 			post = jsonObject.toString();
 			log.debug("post.json file '{}' loaded successfully ", fileLocation);

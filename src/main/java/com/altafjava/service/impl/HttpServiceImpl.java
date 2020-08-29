@@ -74,7 +74,6 @@ public class HttpServiceImpl implements HttpService {
 			responseEntity = restTemplate.exchange(url, HttpMethod.POST, httpEntity, String.class);
 			log.info("Response Status : " + responseEntity.getStatusCode());
 			log.info("Response Headers : " + responseEntity.getHeaders().toString());
-			log.info("Response Body : " + responseEntity.getBody().toString());
 		} catch (HttpClientErrorException | HttpServerErrorException e) {
 			log.error("     " + e);
 			log.error("Error Message : {}", e.getResponseBodyAsString());
