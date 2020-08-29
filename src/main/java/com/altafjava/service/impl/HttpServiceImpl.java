@@ -19,6 +19,10 @@ import com.altafjava.service.HttpService;
 
 import lombok.extern.log4j.Log4j2;
 
+/**
+ * @author altaf
+ *
+ */
 @Log4j2
 @Service
 public class HttpServiceImpl implements HttpService {

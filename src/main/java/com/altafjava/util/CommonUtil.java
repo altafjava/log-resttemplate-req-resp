@@ -38,7 +38,6 @@ public class CommonUtil {
 		try {
 			ApplicationContext applicationContext = ApplicationContextProvider.getApplicationContext();
 			JSONParser jsonParser = applicationContext.getBean(JSONParser.class);
-//			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(new FileReader(fileLocation));
 			post = jsonObject.toString();
 			log.debug("post.json file '{}' loaded successfully ", fileLocation);
